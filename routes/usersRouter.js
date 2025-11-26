@@ -3,7 +3,7 @@ const router = express.Router()
 const usersController = require('../Controllers/usersController.js')
 
 //Create a new user (Author)
-router.post("/", usersController.createUser);
+router.post("/signup", usersController.createUser);
 
 //User Login Endpoint
 router.post("/login", usersController.loginUser);
