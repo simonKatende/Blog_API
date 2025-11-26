@@ -1,0 +1,44 @@
+[2025-11-26T07:20:24.342Z] ✓ New blog post created successfully
+  Title: The Hot weather in Kampala
+  Author ID: 3
+  Post ID: 8
+
+[2025-11-26T07:20:49.839Z] ✓ New blog post created successfully
+  Title: The Hot weather in Kampala
+  Author ID: 3
+  Post ID: 9
+
+[2025-11-26T07:21:28.232Z] ✗ Error creating post: 
+Invalid `prisma.post.create()` invocation in
+C:\Users\simon\bootcampProjects\BlogAPI\Controllers\postControllers.js:13:37
+
+  10  try {
+  11 const { title, content, authorID } = req.body;
+  12 
+→ 13 const newblog = await prisma.post.create({
+       data: {
+         title: "The Hot weather in Kampala",
+         content: "It is November and the weather in Kampala the capital of Uganda is too hot!!! This is a blog post",
+         user: {
+           connect: {
+             id: undefined,
+     ?       username?: String,
+     ?       email?: String,
+     ?       AND?: userWhereInput | userWhereInput[],
+     ?       OR?: userWhereInput[],
+     ?       NOT?: userWhereInput | userWhereInput[],
+     ?       password?: StringFilter | String,
+     ?       posts?: PostListRelationFilter,
+     ?       usertype?: UsertypeListRelationFilter
+           }
+         }
+       }
+     })
+
+Argument `connect` of type userWhereUniqueInput needs at least one of `id`, `username` or `email` arguments. Available options are marked with ?.
+
+[2025-11-26T07:23:44.339Z] ✓ New blog post created successfully
+  Title: Kampala Festival
+  Author ID: 3
+  Post ID: 11
+
