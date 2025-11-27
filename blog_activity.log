@@ -42,3 +42,44 @@ Argument `connect` of type userWhereUniqueInput needs at least one of `id`, `use
   Author ID: 3
   Post ID: 11
 
+[2025-11-27T16:25:02.189Z] ✗ Error creating post: 
+Invalid `prisma.post.create()` invocation in
+C:\Users\simon\bootcampProjects\BlogAPI\Controllers\postControllers.js:13:39
+
+  10 try {
+  11   const { title, content, authorID } = req.body;
+  12 
+→ 13   const newblog = await prisma.post.create({
+         data: {
+           title: "Kampala Festival",
+           content: "The blog is about Kampala Festivaaaaaaaaal.",
+           user: {
+             connect: {
+               id: undefined,
+       ?       username?: String,
+       ?       email?: String,
+       ?       AND?: userWhereInput | userWhereInput[],
+       ?       OR?: userWhereInput[],
+       ?       NOT?: userWhereInput | userWhereInput[],
+       ?       password?: StringFilter | String,
+       ?       roles?: EnumRoleNullableListFilter,
+       ?       posts?: PostListRelationFilter
+             }
+           }
+         }
+       })
+
+Argument `connect` of type userWhereUniqueInput needs at least one of `id`, `username` or `email` arguments. Available options are marked with ?.
+
+[2025-11-27T16:30:31.920Z] ✗ Error creating post: authorID is not defined
+
+[2025-11-27T16:34:02.173Z] ✗ Error creating post: authorID is not defined
+
+[2025-11-27T16:37:18.555Z] ✓ New blog post created successfully
+  Title: Kampala Festival
+ Post ID: 14
+
+[2025-11-27T16:39:24.356Z] ✓ New blog post created successfully
+  Title: Kampala Festival
+ Post ID: 15
+

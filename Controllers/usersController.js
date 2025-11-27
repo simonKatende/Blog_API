@@ -2,6 +2,7 @@ const { PrismaClient } = require("../generated/prisma");
 const prisma = new PrismaClient();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const { use } = require("react");
 require("dotenv").config();
 
 //Create a new user
@@ -13,7 +14,7 @@ const createUser = async (req, res) => {
           username: req.body.username,
           email: req.body.email,
           password: hashed,
-          usertype: req.body.usertype,
+          roles: req.body.roles,
         },
       });
 
@@ -38,9 +39,7 @@ const loginUser = async (req, res) => {
       username: true,
       email: true,
       password: true,
-      usertype: {
-        select: { usertype: true },
-      },
+      roles: true,
     },
   });
 
@@ -51,7 +50,7 @@ const loginUser = async (req, res) => {
         const payload = {
           sub: user.id,
           name: user.username,
-          userType: user.usertype,
+          roles: user.roles,
         };
 
         //create the token
@@ -89,11 +88,9 @@ const getUser = async (req, res) => {
   res.json(user);
 };
 
-//Retrieve all users with their user types
+//Retrieve all users
 const getUsers = async (req, res) => {
-  const users = await prisma.user.findMany({
-    include: { usertype: true },
-  });
+  const users = await prisma.user.findMany();
   res.json(users);
 };
 

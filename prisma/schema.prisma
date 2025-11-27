@@ -15,12 +15,12 @@ datasource db {
 }
 
 model user {
-  id       Int        @id @default(autoincrement())
-  username String     @unique
-  email    String     @unique
+  id       Int    @id @default(autoincrement())
+  username String @unique
+  email    String @unique
   password String
   posts    post[]
-  usertype usertype[]
+  roles    Role[] @default([READER])
 }
 
 model post {
@@ -30,12 +30,11 @@ model post {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   user      user     @relation(fields: [userId], references: [id])
-  userId    Int
+  userId    Int @default(0)
 }
 
-model usertype {
-  id       Int    @id @default(autoincrement())
-  usertype String @unique
-  user     user?  @relation(fields: [userId], references: [id])
-  userId   Int?
+enum Role {
+  ADMIN
+  AUTHOR
+  READER
 }
