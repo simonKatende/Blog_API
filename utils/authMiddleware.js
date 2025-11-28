@@ -10,6 +10,7 @@ const authenticate = (req, res, next) => {
 
   // Check authorization header
   const authHeader = req.headers.authorization;
+  
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     return res.status(401).json({ message: "No or invalid authorization header" });
   }
